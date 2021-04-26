@@ -1,6 +1,6 @@
 # Puck Watch
 Project By: Simon Ngo<br />
-Live Site: Coming Soon
+Live Site: [Puck Watch - Heroku Build]('https://peaceful-mesa-85332.herokuapp.com/')
 
 ## About
 
