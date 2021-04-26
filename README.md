@@ -1,10 +1,10 @@
 # Puck Watch
-Project By: Simon Ngo
+Project By: Simon Ngo<br />
 Live Site: Coming Soon
 
 ## About
 
-Puck Watch is a web tool designed to find and visualize NHL stats.
+Puck Watch is a web tool designed to find and visualize NHL stats.<br />
 Information such as standings, personal stats and league wide statistics can all be found on this site.
 
 ## Available Scripts
