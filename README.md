@@ -1,7 +1,7 @@
 # Puck Watch
 Project By: Simon Ngo<br />
 Live Site: [Puck Watch - Heroku Build](https://puckwatchv1.herokuapp.com/)<br />
-Allow up to 10 seconds to load, since site will get uncached from Heroku due to innactivity
+Allow up to 10 seconds to load, since the site will get uncached from Heroku due to inactivity
 
 ## About
 
@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### 'npm run build'
+### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.

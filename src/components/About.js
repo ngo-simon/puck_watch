@@ -23,6 +23,8 @@ const About = () => {
           <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
           <div>Icons made by <a href="https://creativemarket.com/Becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
           <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          <div>Team logos from https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/(team_id).svg</div>
+          <div>Player photos from http://nhl.bamcontent.com/images/headshots/current/168x168/(player_id).jpg</div>
         </div> 
       </div>
       <h2>Personal Links</h2>
