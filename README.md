@@ -1,6 +1,7 @@
 # Puck Watch
 Project By: Simon Ngo<br />
-Live Site: [Puck Watch - Heroku Build](https://puckwatchv1.herokuapp.com/)
+Live Site: [Puck Watch - Heroku Build](https://puckwatchv1.herokuapp.com/)<br />
+Allow up to 10 seconds to load, since site will get uncached from Heroku due to innactivity
 
 ## About
 

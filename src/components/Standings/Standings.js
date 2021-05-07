@@ -6,8 +6,6 @@ import Divison from './Division'
 import Button from '@material-ui/core/Button'
 
 const headers = [
-  {title: ''},
-  {title: 'Team'},
   {title: 'GP'},
   {title: 'W'},
   {title: 'L'},

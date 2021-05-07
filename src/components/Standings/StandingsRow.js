@@ -6,17 +6,8 @@ import {
 } from "react-router-dom"
 
 const teamNameStyle = {
-  minWidth: "100px",
+  maxWidth: "100px",
   cursor: 'pointer'
-}
-
-const logoStyle = {
-  maxWidth: "45px",
-  cursor: 'pointer'
-}
-
-const customColumnStyle2 = {
-  maxWidth: "45px",
 }
 
 const StandingsRow = ({team, team_info}) => {
@@ -25,18 +16,18 @@ const StandingsRow = ({team, team_info}) => {
   return (
     <>
       <TableRow>
-        <TableCell style={logoStyle}
+        <TableCell
                   component="th"
                   scope="row" onClick={() => history.push(`/teams/${team.team.id}/`)} >
           <p><img alt='' verticalalign='sub' width="40px" src={`data:image/svg+xml;utf8,${encodeURIComponent(team_bio.logo)}`}/></p>
         </TableCell>
         <TableCell style={teamNameStyle} onClick={() => history.push(`/teams/${team.team.id}/`)}>{team_bio.teamName} </TableCell>
-        <TableCell style={customColumnStyle2}>{team.gamesPlayed}</TableCell>
-        <TableCell style={customColumnStyle2}>{team.leagueRecord.wins}</TableCell>
-        <TableCell style={customColumnStyle2}>{team.leagueRecord.losses}</TableCell>
-        <TableCell style={customColumnStyle2}>{team.leagueRecord.ot}</TableCell>
-        <TableCell style={customColumnStyle2}>{team.points}</TableCell>
-        <TableCell style={customColumnStyle2}>{team.streak.streakCode}</TableCell>
+        <TableCell align='center'>{team.gamesPlayed}</TableCell>
+        <TableCell align='center'>{team.leagueRecord.wins}</TableCell>
+        <TableCell align='center'>{team.leagueRecord.losses}</TableCell>
+        <TableCell align='center'>{team.leagueRecord.ot}</TableCell>
+        <TableCell align='center'>{team.points}</TableCell>
+        <TableCell align='center'>{team.streak.streakCode}</TableCell>
       </TableRow>
     </>
   )
