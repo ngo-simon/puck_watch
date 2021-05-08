@@ -4,8 +4,10 @@ const About = () => {
   return(
     <div style={{marginLeft:"auto", marginRight:"auto", display: "table"}}>
       <h1>About This Project</h1>
-      <p>Puck Watch is a NHL stats tool created by myself (Simon Ngo) during quarantine in 2020-2021 when the NHL season was suspended.</p>
-      The goal of this site was to provide an easy way to find and visualize NHL stats.
+      <p>Puck Watch is a NHL stats tool created by myself (Simon Ngo) during quarantine in 2020-2021 when the NHL season was suspended. <br />
+      The site was inspired by my incessant searching and comparison of NHL stats throughout the season. I decided to create a website that tracks it all in one place.
+      </p>
+      <p></p>
       
       <h2>This project used:</h2>
       <div style={{textAlign:"left"}}>

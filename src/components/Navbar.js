@@ -120,6 +120,9 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  homeIcon: {
+    cursor: 'pointer'
+  }
 }));
 
 const Navbar = () => {
@@ -192,7 +195,7 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography onClick={() => history.push('/')} variant="h6" noWrap>
+          <Typography className={classes.homeIcon} onClick={() => history.push('/')} variant="h6" noWrap>
             Puck Watch
           </Typography>
           <form onSubmit={searchPlayer}>

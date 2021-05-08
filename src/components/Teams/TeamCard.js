@@ -11,13 +11,13 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 300,
-    maxWidth: 300,
+    minWidth: 200,
+    maxWidth: 200,
     display: 'inline-block',
     verticalAlign: 'text-top'
   },
   media: {
-    height: 200,
+    height: 150,
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -28,18 +28,21 @@ const useStyles = makeStyles({
 const TeamCard = ({team}) => {
   const history = useHistory()
   const classes = useStyles()
-
+  console.log(team)
   return (
     <Card className={classes.root} onClick={() => history.push(`/teams/${team.id}/`)}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={`data:image/svg+xml;utf8,${encodeURIComponent(team.logo)}`}
-          title="Contemplative Reptile"
+          title={team.fullName}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {team.fullName}
+          <Typography gutterBottom variant="body" align='left' component="h2">
+            {team.locationName}
+          </Typography>
+          <Typography gutterBottom variant="body1" align='left' component="h2">
+            {team.teamName}
           </Typography>
         </CardContent>
       </CardActionArea>
