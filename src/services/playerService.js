@@ -28,7 +28,7 @@ const getAllPlayerIds = async () => {
   let playerIds = []
   let teamIds = []
   for (let p = 1; p<31; p++){
-    if (p === 11 || p === 27){ //exluding non existant teams: thrashers, whalers etc
+    if (p === 11 || p === 27 || p === 55){ //exluding non existant teams: thrashers, whalers, kraken etc
       continue
     }
     teamIds = teamIds.concat(p)

@@ -82,6 +82,7 @@ const Search = () => {
   const clear_names = (event) => {
     setSearched([])
     window.localStorage.removeItem('players')
+    window.localStorage.setItem('players', JSON.stringify([]))
   }
 
   const handleNameChangeAuto = (event, values) => {
@@ -97,12 +98,15 @@ const Search = () => {
     let player_selected = player_ids.find(player => (player.name.toUpperCase() === playerName.toUpperCase()))
     if (player_selected !== -1 && player_selected !== undefined){
       let newPlayer = {name: playerName.toUpperCase(), id: player_selected.id}
-      let updated_list = searched.concat(newPlayer)
-      window.localStorage.removeItem('players')
-      setSearched(updated_list)
-      window.localStorage.setItem('players', JSON.stringify(updated_list))
+      if (searched.some(p => p.name === newPlayer.name) === false){
+        let updated_list = searched.concat(newPlayer)
+        window.localStorage.removeItem('players')
+        setSearched(updated_list)
+        window.localStorage.setItem('players', JSON.stringify(updated_list))
+      }
       history.push('/player/'.concat(player_selected.id))
       setPlayerName('')
+      
     }
   }
 
@@ -130,7 +134,7 @@ const Search = () => {
           </Autocomplete>
         </form>
         <h1>Recently Searched</h1>
-        <Button variant="contained" color="primary" onClick={() => clear_names()}>
+        <Button variant="contained" color="primary" onClick={clear_names}>
           Clear
         </Button>
       </div>

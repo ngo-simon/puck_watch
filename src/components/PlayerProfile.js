@@ -59,8 +59,8 @@ const extraHeaders = [
     field: 'timeOnIce'
   },
   {
-    title: 'Shifts',
-    field: 'shifts'
+    title: 'Hits',
+    field: 'hits'
   },
   {
     title: 'Shot%',
@@ -201,7 +201,7 @@ const morePlayerStats = (split, adv) => {
   return(
     <React.Fragment>
       {NonNullCell(split.stat.timeOnIce)}
-      {NonNullCell(split.stat.shifts)}
+      {NonNullCell(split.stat.hits)}
       {NonNullCell(split.stat.shotPct)}
       {NonNullCell(split.stat.faceOffPct)}
       {NonNullCell(split.stat.powerPlayGoals)}

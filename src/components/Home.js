@@ -67,6 +67,7 @@ const Home = () => {
     <div style={{textAlign:"center"}}>
       <Helmet>
         <title>{ 'Puck Watch' }</title>
+        <link rel="icon" type="image/png" href={player} sizes="16x16" />
       </Helmet>
       <img src={player} alt=""></img>
       <h1>Puck Watch</h1>

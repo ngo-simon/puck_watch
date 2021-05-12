@@ -130,15 +130,10 @@ const Navbar = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [playerName, setPlayerName] = useState('')
-  const [searched, setSearched] = useState([])
 
   useEffect(() => {
-    let searchedNames = []
     if (!window.localStorage.getItem('players')){
       window.localStorage.setItem('players', JSON.stringify([]))
-    } else {
-      searchedNames = JSON.parse(window.localStorage.getItem('players'))
-      setSearched(searchedNames)
     }
   }, []);
 
@@ -165,12 +160,14 @@ const Navbar = () => {
   const searchPlayer = (event) => {
     event.preventDefault()
     let player_selected = player_ids.find(player => (player.name.toUpperCase() === playerName.toUpperCase()))
+    let stored_players = JSON.parse(window.localStorage.getItem('players'))
     if (player_selected !== -1 && player_selected !== undefined){
       let newPlayer = {name: playerName.toUpperCase(), id: player_selected.id}
-      let updated_list = searched.concat(newPlayer)
-      window.localStorage.removeItem('players')
-      setSearched(updated_list)
-      window.localStorage.setItem('players', JSON.stringify(updated_list))
+      if (stored_players.some(p => p.name === newPlayer.name) === false){
+        let updated_list = stored_players.concat(newPlayer)
+        window.localStorage.removeItem('players')
+        window.localStorage.setItem('players', JSON.stringify(updated_list))
+      }
       history.push('/player/'.concat(player_selected.id))
       setPlayerName('')
     }

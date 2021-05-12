@@ -46,6 +46,10 @@ const extraHeaders = [
     field: 'blocked'
   },
   {
+    title: 'Hits',
+    field: 'hits'
+  },
+  {
     title: 'Shot%',
     field: 'shotPct'
   },
@@ -136,6 +140,7 @@ const format_skaters = (skater) => {
       timeOnIce:0,
       timeOnIcePerGame: 0,
       blocked: 0,
+      hits: 0,
       shotPct:0,
       faceOffPct: 0,
       powerPlayGoals: 0,
@@ -159,6 +164,7 @@ const format_skaters = (skater) => {
     timeOnIce: playerStats.timeOnIce,
     timeOnIcePerGame: playerStats.timeOnIcePerGame,
     blocked: playerStats.blocked,
+    hits: playerStats.hits,
     shotPct: playerStats.shotPct,
     faceOffPct: playerStats.faceOffPct,
     powerPlayGoals: playerStats.powerPlayGoals,
