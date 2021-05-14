@@ -1,12 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import React, {useState} from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -14,20 +7,10 @@ import { useDispatch, useSelector} from 'react-redux'
 import { 
   setPlayer
 } from '../reducers/playerReducer'
+import PlayerBio from './PlayerBio'
+import PlayerChart from './PlayerChart'
 
 const tableHeaders = [
-  {
-    title: 'Season',
-    field: 'season'
-  },
-  {
-    title: 'League',
-    field: 'leagueName'
-  },
-  {
-    title: 'Team',
-    field: 'teamName'
-  },
   {
     title: 'GP',
     field: 'games'
@@ -90,18 +73,6 @@ const extraHeaders = [
 
 const goalieHeaders = [
   {
-    title: 'Season',
-    field: 'season'
-  },
-  {
-    title: 'Team',
-    field: 'teamName'
-  },
-  {
-    title: 'League',
-    field: 'leagueName'
-  },
-  {
     title: 'GP',
     field: 'games'
   },
@@ -161,71 +132,6 @@ const useStyles = makeStyles({
 });
 
 
-
-const PlayerBio = (pic, bio) => {
-  return(
-    <div style={{textAlign:"center"}}>
-      <img src={'data:image/jpeg;base64, '.concat(pic)} alt='player'/>
-      <h1>{bio.fullName} #{bio.primaryNumber}</h1>
-      <p>Position: {bio.primaryPosition.name}, {bio.primaryPosition.name === 'Goalie' ? 'Catches' : 'Shoots'}: {bio.shootsCatches}</p>
-      <p>Team: {bio.currentTeam.name}</p>
-      <p>Height: {bio.height}, Weight: {bio.weight}lbs</p>
-      <p>Born: {bio.birthCity}, {bio.birthStateProvince} {bio.birthCountry}</p>
-      <p>Age: {bio.currentAge}</p>
-    </div>
-  )
-}
-
-const NonNullCell = (data) => {
-  let cellValue = data
-  if (data === undefined){
-    cellValue = '-'
-  }
-  return(
-    <TableCell>{cellValue}</TableCell>
-  )
-}
-
-const shortenLeague = (league) => {
-  if (league === 'National Hockey League'){
-    return 'NHL'
-  } else {
-    return league
-  }
-}
-
-const morePlayerStats = (split, adv) => {
-  if (!adv){
-    return null
-  }
-  return(
-    <React.Fragment>
-      {NonNullCell(split.stat.timeOnIce)}
-      {NonNullCell(split.stat.hits)}
-      {NonNullCell(split.stat.shotPct)}
-      {NonNullCell(split.stat.faceOffPct)}
-      {NonNullCell(split.stat.powerPlayGoals)}
-      {NonNullCell(split.stat.powerPlayPoints)}
-      {NonNullCell(split.stat.powerPlayTimeOnIce)}
-      {NonNullCell(split.stat.gameWinningGoals)}
-    </React.Fragment>
-  )
-}
-
-const moreGoalieStats = (split, adv) => {
-  if (!adv){
-    return null
-  }
-  return(
-    <React.Fragment>
-      {NonNullCell(split.stat.goalsAgainst)}
-      {NonNullCell(split.stat.powerPlaySavePercentage ? ((split.stat.powerPlaySavePercentage / 100).toFixed(3)) : '-')}
-      {NonNullCell(split.stat.shortHandedSavePercentage ? ((split.stat.shortHandedSavePercentage / 100).toFixed(3)) : '-')}
-      {NonNullCell(split.stat.evenStrengthSavePercentage ? (split.stat.evenStrengthSavePercentage / 100).toFixed(3) : '-')}
-    </React.Fragment>
-  )
-}
-
 const PlayerStats = (stats, position, adv, classes) => {
   let headers = []
   if (position === 'Goalie') {
@@ -240,49 +146,8 @@ const PlayerStats = (stats, position, adv, classes) => {
     }
   }
   return (
-    <TableContainer style={ adv ? { width: 1500, margin: 'auto' } : { width: 800, margin: 'auto' }} component={Paper}>
-      <Table aria-label="simple table" size='small'>
-        <TableHead>
-          <TableRow>
-            {headers.map(header => 
-              <TableCell key={header.title}><b>{header.title}</b></TableCell>
-            )}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {position !== 'Goalie' ? (stats.map((split, i) => (
-            <TableRow key={i}>
-              <TableCell>{[split.season.slice(0, 4), '-', split.season.slice(4)].join('')}</TableCell>
-              <TableCell>{shortenLeague(split.league.name)}</TableCell>
-              {NonNullCell(split.team.name)}
-              {NonNullCell(split.stat.games)}
-              {NonNullCell(split.stat.goals)}
-              {NonNullCell(split.stat.assists)}
-              {NonNullCell(split.stat.points)}
-              {NonNullCell(split.stat.pim)}
-              {NonNullCell(split.stat.plusMinus)}
-              {morePlayerStats(split, adv)}
-            </TableRow>
-            ))) :
-            (stats.map((split, i) => (
-              <TableRow key={i}>
-                <TableCell>{[split.season.slice(0, 4), '-', split.season.slice(4)].join('')}</TableCell>
-                <TableCell>{shortenLeague(split.league.name)}</TableCell>
-                {NonNullCell(split.team.name)}
-                {NonNullCell(split.stat.games)}
-                {NonNullCell(split.stat.wins)}
-                {NonNullCell(split.stat.losses)}
-                {NonNullCell(split.stat.shutouts)}
-                {NonNullCell(split.stat.savePercentage ? split.stat.savePercentage.toFixed(3) : '-')}
-                {NonNullCell(split.stat.goalAgainstAverage ? split.stat.goalAgainstAverage.toFixed(2) : '-')}
-                {NonNullCell(split.stat.saves)}
-                {moreGoalieStats(split, adv)}
-              </TableRow>
-            )))
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <PlayerChart stats={stats} headers={headers} adv={adv}/>
+
   )
 }
 
@@ -301,12 +166,13 @@ const PlayerProfile = ({ id }) => {
   let playoffStats = player.playoffs
 
   if (NHLonly){
-    careerStats = careerStats.filter(split => shortenLeague(split.league.name) === 'NHL')
-    playoffStats = playoffStats.filter(split => shortenLeague(split.league.name) === 'NHL')
+    careerStats = careerStats.filter(split => split.league.name === 'National Hockey League')
+    playoffStats = playoffStats.filter(split => split.league.name === 'National Hockey League')
   }
+
   return(
     <div style={{textAlign:"center"}}> 
-      {PlayerBio(player.pic, player.bio)}
+      <PlayerBio pic={player.pic} bio={player.bio}/>
       <FormGroup row className={classes.root}>
         <FormControlLabel
           control={

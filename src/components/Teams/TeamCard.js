@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 const TeamCard = ({team}) => {
   const history = useHistory()
   const classes = useStyles()
-  console.log(team)
   return (
     <Card className={classes.root} onClick={() => history.push(`/teams/${team.id}/`)}>
       <CardActionArea>
@@ -38,7 +37,7 @@ const TeamCard = ({team}) => {
           title={team.fullName}
         />
         <CardContent>
-          <Typography gutterBottom variant="body" align='left' component="h2">
+          <Typography gutterBottom variant="inherit" align='left' component="h2">
             {team.locationName}
           </Typography>
           <Typography gutterBottom variant="body1" align='left' component="h2">

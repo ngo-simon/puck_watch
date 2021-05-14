@@ -12,6 +12,7 @@ const getAllTeams = async () => {
   const reqUrl = baseUrl.concat("teams/")
   const response = await axios.get(reqUrl)
   for (const team of response.data.teams){
+    if(team.id === 55){continue}
     const teamPic = "https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/".concat(team.id).concat('.svg')
     const responsePic = await axios.get(teamPic)
     teamIds = teamIds.concat({
