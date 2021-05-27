@@ -17,119 +17,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import Graphs from './Graphs';
+import {tableHeaders, extraHeaders, goalieHeaders, extraGoalieHeaders} from '../headers'
 
-const tableHeaders = [
-
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'G',
-    field: 'goals'
-  },
-  {
-    title: 'A',
-    field: 'assists'
-  },
-  {
-    title: 'P',
-    field: 'points'
-  },
-  {
-    title: 'PIM',
-    field: 'pim'
-  },
-  {
-    title: '+/-',
-    field: 'plusMinus'
-  }
-]
-const extraHeaders = [
-  {
-    title: 'TOI',
-    field: 'timeOnIce'
-  },
-  {
-    title: 'Shifts',
-    field: 'shifts'
-  },
-  {
-    title: 'Shot%',
-    field: 'shotPct'
-  },
-  {
-    title: 'FO%',
-    field: 'faceOffPct'
-  },
-  {
-    title: 'PPG',
-    field: 'powerPlayGoals'
-  },
-  {
-    title: 'PPP',
-    field: 'powerPlayPoints'
-  },
-  {
-    title: 'PPTOI',
-    field: 'powerPlayTimeOnIce'
-  },
-  {
-    title: 'GWG',
-    field: 'gameWinningGoals'
-  },
-]
-
-const goalieHeaders = [
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'W',
-    field: 'wins'
-  },
-  {
-    title: 'L',
-    field: 'losses'
-  },
-  {
-    title: 'SO',
-    field: 'shutouts'
-  },
-  {
-    title: 'S%',
-    field: 'savePercentage'
-  },
-  {
-    title: 'GAA',
-    field: 'goalAgainstAverage'
-  },
-  {
-    title: 'Saves',
-    field: 'saves'
-  }
-]
-
-const extraGoalieHeaders = [
-  {
-    title: 'GA',
-    field: 'goalsAgainst'
-  },
-  {
-    title: 'PPS%',
-    field: 'powerPlaySavePercentage'
-  },
-  {
-    title: 'SHS%',
-    field: 'shortHandedSavePercentage'
-  },
-  {
-    title: 'ES%',
-    field: 'evenStrengthSavePercentage'
-  },
-
-]
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -283,7 +172,6 @@ const Compare = () => {
     } else {
       console.log('error')
     }
-    
   }
 
   return(

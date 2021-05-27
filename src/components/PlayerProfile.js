@@ -9,118 +9,7 @@ import {
 } from '../reducers/playerReducer'
 import PlayerBio from './PlayerBio'
 import PlayerChart from './PlayerChart'
-
-const tableHeaders = [
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'G',
-    field: 'goals'
-  },
-  {
-    title: 'A',
-    field: 'assists'
-  },
-  {
-    title: 'P',
-    field: 'points'
-  },
-  {
-    title: 'PIM',
-    field: 'pim'
-  },
-  {
-    title: '+/-',
-    field: 'plusMinus'
-  }
-]
-const extraHeaders = [
-  {
-    title: 'TOI',
-    field: 'timeOnIce'
-  },
-  {
-    title: 'Hits',
-    field: 'hits'
-  },
-  {
-    title: 'Shot%',
-    field: 'shotPct'
-  },
-  {
-    title: 'FO%',
-    field: 'faceOffPct'
-  },
-  {
-    title: 'PPG',
-    field: 'powerPlayGoals'
-  },
-  {
-    title: 'PPP',
-    field: 'powerPlayPoints'
-  },
-  {
-    title: 'PPTOI',
-    field: 'powerPlayTimeOnIce'
-  },
-  {
-    title: 'GWG',
-    field: 'gameWinningGoals'
-  },
-]
-
-const goalieHeaders = [
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'W',
-    field: 'wins'
-  },
-  {
-    title: 'L',
-    field: 'losses'
-  },
-  {
-    title: 'SO',
-    field: 'shutouts'
-  },
-  {
-    title: 'S%',
-    field: 'savePercentage'
-  },
-  {
-    title: 'GAA',
-    field: 'goalAgainstAverage'
-  },
-  {
-    title: 'Saves',
-    field: 'saves'
-  }
-]
-
-const extraGoalieHeaders = [
-  {
-    title: 'GA',
-    field: 'goalsAgainst'
-  },
-  {
-    title: 'PPS%',
-    field: 'powerPlaySavePercentage'
-  },
-  {
-    title: 'SHS%',
-    field: 'shortHandedSavePercentage'
-  },
-  {
-    title: 'ES%',
-    field: 'evenStrengthSavePercentage'
-  },
-
-]
+import {tableHeaders, extraHeaders, goalieHeaders, extraGoalieHeaders, intl_leagues} from './headers'
 
 const useStyles = makeStyles({
   root: {
@@ -131,8 +20,7 @@ const useStyles = makeStyles({
   }
 });
 
-
-const PlayerStats = (stats, position, adv, classes) => {
+const PlayerStats = (stats, position, adv) => {
   let headers = []
   if (position === 'Goalie') {
     headers = goalieHeaders
@@ -147,7 +35,6 @@ const PlayerStats = (stats, position, adv, classes) => {
   }
   return (
     <PlayerChart stats={stats} headers={headers} adv={adv}/>
-
   )
 }
 
@@ -161,7 +48,7 @@ const PlayerProfile = ({ id }) => {
     dispatch(setPlayer(id))
     return null
   }
-  let interStats = player.stats.filter(split => ['Olympics', 'WC-A', 'WJC-A', 'WJC-18', 'WCup', 'WJ18-A', 'WC', 'WJC-20', 'OGQ', 'International', 'EHT', 'OG'].indexOf(split.league.name) > -1)
+  let interStats = player.stats.filter(split => intl_leagues.indexOf(split.league.name) > -1)
   let careerStats = player.stats.filter(split => !interStats.includes(split))
   let playoffStats = player.playoffs
 

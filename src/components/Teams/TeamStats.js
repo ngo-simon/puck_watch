@@ -2,132 +2,9 @@ import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTeam } from '../../reducers/teamReducer'
 import Button from '@material-ui/core/Button'
+import {tableHeaders, extraTeamHeaders, goalieHeaders, extraGoalieHeaders} from '../headers'
 
 import PlayerTable from './PlayerTable'
-
-const tableHeaders = [
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'Goals',
-    field: 'goals'
-  },
-  {
-    title: 'Assists',
-    field: 'assists'
-  },
-  {
-    title: 'Points',
-    field: 'points'
-  },
-  {
-    title: 'PIM',
-    field: 'pim'
-  },
-  {
-    title: '+/-',
-    field: 'plusMinus'
-  }
-]
-
-const extraHeaders = [
-  {
-    title: 'TOI',
-    field: 'timeOnIce'
-  },
-  {
-    title: 'TOI/G',
-    field: 'timeOnIcePerGame'
-  },
-  {
-    title: 'Blocked',
-    field: 'blocked'
-  },
-  {
-    title: 'Hits',
-    field: 'hits'
-  },
-  {
-    title: 'Shot%',
-    field: 'shotPct'
-  },
-  {
-    title: 'FO%',
-    field: 'faceOffPct'
-  },
-  {
-    title: 'PPG',
-    field: 'powerPlayGoals'
-  },
-  {
-    title: 'PPP',
-    field: 'powerPlayPoints'
-  },
-  {
-    title: 'PPTOI',
-    field: 'powerPlayTimeOnIce'
-  },
-  {
-    title: 'GWG',
-    field: 'gameWinningGoals'
-  },
-]
-
-const goalieHeaders = [
-  {
-    title: 'GP',
-    field: 'games'
-  },
-  {
-    title: 'W',
-    field: 'wins'
-  },
-  {
-    title: 'L',
-    field: 'losses'
-  },
-  {
-    title: 'T',
-    field: 'ties'
-  },
-  {
-    title: 'SO',
-    field: 'shutouts'
-  },
-  {
-    title: 'Sv',
-    field: 'savePercentage'
-  },
-  {
-    title: 'GAA',
-    field: 'goalAgainstAverage'
-  },
-  {
-    title: 'Saves',
-    field: 'saves'
-  }
-]
-
-const extraGoalieHeaders = [
-  {
-    title: 'GA',
-    field: 'goalsAgainst'
-  },
-  {
-    title: 'PPS%',
-    field: 'powerPlaySavePercentage'
-  },
-  {
-    title: 'SHS%',
-    field: 'shortHandedSavePercentage'
-  },
-  {
-    title: 'ES%',
-    field: 'evenStrengthSavePercentage'
-  },
-]
 
 const TeamHeader = (team_info, name) => {
   return(
@@ -268,8 +145,8 @@ const TeamStats = ({ id }) => {
   const changeAdvancedView = () => {
     setAdvancedStats(!advancedStats)
     if (!advancedStats){
-      setForwardHeaders(tableHeaders.concat(extraHeaders))
-      setDefenseHeaders(tableHeaders.concat(extraHeaders))
+      setForwardHeaders(tableHeaders.concat(extraTeamHeaders))
+      setDefenseHeaders(tableHeaders.concat(extraTeamHeaders))
       setGoalHeaders(goalieHeaders.concat(extraGoalieHeaders))
     } else {
       setForwardHeaders(tableHeaders)

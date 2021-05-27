@@ -1,66 +1,7 @@
 import React  from 'react';
 import { useSelector} from 'react-redux'
 import LeaderTableGroup from './LeaderTableGroup'
-
-let scoring_values = [
-  {
-    title:'Goals',
-    value:'goals',
-  },
-  {
-    title:'Assists',
-    value:'assists',
-  },
-  {
-    title:'Points',
-    value:'points',
-  },
-  {
-    title:'+/-',
-    value:'plusMinus',
-  }
-]
-
-let physical_values = [
-  {
-    title:'Hits',
-    value:'hits',
-  },
-  {
-    title:'Blocked',
-    value:'blocked',
-  },
-  {
-    title:'PIM',
-    value:'pim',
-  }
-]
-
-let time_values = [
-  {
-    title:'TOI',
-    value:'evenTimeOnIce',
-  },
-  {
-    title:'PPTOI',
-    value:'powerPlayTimeOnIce',
-  },
-  {
-    title:'TOI/G',
-    value:'timeOnIcePerGame',
-  }
-]
-
-let goalie_values = [
-  {
-    title:'GAA',
-    value:'goalAgainstAverage',
-  },
-  {
-    title:'SV%',
-    value:'savePercentage',
-  }
-]
+import {scoring_values, physical_values, time_values, goalie_values} from '../headers'
 
 const Leaders = () => {
   let player_array = useSelector(state => state.player.player_ids.filter(player => player.stats !== {}))
