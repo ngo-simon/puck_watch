@@ -10,6 +10,7 @@ import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import StandingsRow from './StandingsRow'
+import {standings_headers} from '../headers'
 
 const teamNameStyle = {
   paddingRight: '20px',
@@ -26,8 +27,7 @@ const theme = createMuiTheme({
   },
 });
 
-
-const Divison = ({div, name, headers, team_info}) => {
+const Divison = ({div, name}) => {
   return (
     <div style={{display: 'inline-block', verticalAlign: 'text-top'}}>
       <h3>{name}</h3>
@@ -38,13 +38,13 @@ const Divison = ({div, name, headers, team_info}) => {
             <TableRow >
               <TableCell ><b></b></TableCell>
               <TableCell style={teamNameStyle}><b>Team</b></TableCell>
-              {headers.map(header => 
-                <TableCell key={header.title}><b>{header.title}</b></TableCell>
+              {standings_headers.map(header => 
+                <TableCell key={header}><b>{header}</b></TableCell>
               )}
             </TableRow>
           </TableHead>
           <TableBody>
-            {div.map(team => <StandingsRow team={team} team_info={team_info} key={team.team.id}></StandingsRow>)}
+            {div.map(team => <StandingsRow team={team} key={team.team.id}></StandingsRow>)}
           </TableBody>
         </Table>
         </ThemeProvider>

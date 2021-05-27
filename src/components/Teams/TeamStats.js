@@ -97,7 +97,7 @@ const goalieHeaders = [
     field: 'shutouts'
   },
   {
-    title: 'S%',
+    title: 'Sv',
     field: 'savePercentage'
   },
   {
@@ -108,6 +108,25 @@ const goalieHeaders = [
     title: 'Saves',
     field: 'saves'
   }
+]
+
+const extraGoalieHeaders = [
+  {
+    title: 'GA',
+    field: 'goalsAgainst'
+  },
+  {
+    title: 'PPS%',
+    field: 'powerPlaySavePercentage'
+  },
+  {
+    title: 'SHS%',
+    field: 'shortHandedSavePercentage'
+  },
+  {
+    title: 'ES%',
+    field: 'evenStrengthSavePercentage'
+  },
 ]
 
 const TeamHeader = (team_info, name) => {
@@ -193,6 +212,10 @@ const format_goalies = (goalie) => {
       savePercentage:0,
       goalAgainstAverage:0,
       saves: 0,
+      goalsAgainst: 0,
+      powerPlaySavePercentage: 0,
+      shortHandedSavePercentage: 0,
+      evenStrengthSavePercentage: 0,
       formatted: true
     }
   }
@@ -208,6 +231,10 @@ const format_goalies = (goalie) => {
     savePercentage: goalie.person.stats[0].splits[0].stat.savePercentage,
     goalAgainstAverage: goalie.person.stats[0].splits[0].stat.goalAgainstAverage,
     saves: goalie.person.stats[0].splits[0].stat.saves,
+    goalsAgainst: goalie.person.stats[0].splits[0].stat.goalsAgainst,
+    powerPlaySavePercentage: goalie.person.stats[0].splits[0].stat.powerPlaySavePercentage,
+    shortHandedSavePercentage: goalie.person.stats[0].splits[0].stat.shortHandedSavePercentage,
+    evenStrengthSavePercentage: goalie.person.stats[0].splits[0].stat.evenStrengthSavePercentage,
     formatted: true
   }
   return formatted_goalie
@@ -222,6 +249,7 @@ const TeamStats = ({ id }) => {
   const [advancedStats, setAdvancedStats] = useState(false)
   const [forwardHeaders, setForwardHeaders] = useState(tableHeaders)
   const [defenseHeaders, setDefenseHeaders] = useState(tableHeaders)
+  const [goalHeaders, setGoalHeaders] = useState(goalieHeaders)
 
   if (team_roster === {} || team_roster.id !== parseInt(id) || team_info === undefined){
     dispatch(selectTeam(id))
@@ -242,9 +270,11 @@ const TeamStats = ({ id }) => {
     if (!advancedStats){
       setForwardHeaders(tableHeaders.concat(extraHeaders))
       setDefenseHeaders(tableHeaders.concat(extraHeaders))
+      setGoalHeaders(goalieHeaders.concat(extraGoalieHeaders))
     } else {
       setForwardHeaders(tableHeaders)
       setDefenseHeaders(tableHeaders)
+      setGoalHeaders(goalieHeaders)
     }
     
   }
@@ -258,7 +288,7 @@ const TeamStats = ({ id }) => {
       <h2>Defensemen</h2>
       <PlayerTable players={defensemen} headers={defenseHeaders} dispatch={dispatch} adv={advancedStats} player_type={'D'}/>
       <h2>Goalies</h2>
-      <PlayerTable players={goalies} headers={goalieHeaders} dispatch={dispatch} adv={advancedStats} player_type={'G'}/>
+      <PlayerTable players={goalies} headers={goalHeaders} dispatch={dispatch} adv={advancedStats} player_type={'G'}/>
     </div>
   )
 }

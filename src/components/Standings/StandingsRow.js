@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
+
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import {
@@ -10,8 +12,9 @@ const teamNameStyle = {
   cursor: 'pointer'
 }
 
-const StandingsRow = ({team, team_info}) => {
+const StandingsRow = ({team}) => {
   const history = useHistory()
+  const team_info = useSelector(state => state.teams.teams)
   const team_bio = team_info.find(t => parseInt(t.id) === team.team.id)
   return (
     <>

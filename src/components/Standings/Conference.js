@@ -10,12 +10,12 @@ import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import StandingsRow from './StandingsRow'
+import {standings_headers} from '../headers'
 
 const teamNameStyle = {
   paddingRight: '20px',
   cursor: 'pointer',
 }
-
 
 const theme = createMuiTheme({
   overrides: {
@@ -27,27 +27,25 @@ const theme = createMuiTheme({
   },
 });
 
+const Conference = ({div, name}) => {
 
-
-const Conference = ({div1, div2, name, headers, team_info}) => {
-  let mergedConf = (div1.concat(div2)).sort((a,b) => a.points < b.points)
   return (
     <div style={{display: 'inline-block', verticalAlign: 'text-top'}}>
       <h3>{name}</h3>
-      <TableContainer  component={Paper}>
+      <TableContainer component={Paper}>
       <ThemeProvider theme={theme}>
       <Table>
         <TableHead>
           <TableRow >
-            <TableCell ><b></b></TableCell>
+            <TableCell><b></b></TableCell>
             <TableCell style={teamNameStyle}><b>Team</b></TableCell>
-            {headers.map(header => 
-              <TableCell key={header.title}><b>{header.title}</b></TableCell>
+            {standings_headers.map(header => 
+              <TableCell key={header}><b>{header}</b></TableCell>
             )}
           </TableRow>
         </TableHead>
         <TableBody>
-          {mergedConf.map(team => <StandingsRow team={team} team_info={team_info} ></StandingsRow>)}
+          {div.map(team => <StandingsRow team={team} key={team.team.id}></StandingsRow>)}
         </TableBody>
       </Table>
       </ThemeProvider>
